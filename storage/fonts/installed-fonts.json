@@ -1,0 +1,25 @@
+{
+    "papericons": {
+        "normal": "papericons_normal_92d61f4da3701a4537c7103f510a0abd"
+    },
+    "roboto": {
+        "100": "roboto_100_846e8c721018a25e991e2ce03cc97f8a",
+        "100_italic": "roboto_100_italic_21d679b4f2539bd3d19e12a065c9d1ac",
+        "300": "roboto_300_104dd0129b503dec5d574433f42a7ef4",
+        "300_italic": "roboto_300_italic_cb8794787b0231b04c497304060e1448",
+        "normal": "roboto_normal_b21f6450c34fbc5b8727fb987800c994",
+        "italic": "roboto_italic_72d3b9053c22633b0fac0afa8aa8374f",
+        "500": "roboto_500_b48007628437ffd0180e2603eca24622",
+        "500_italic": "roboto_500_italic_63c2a3b900e243eb7528b68e17542caa",
+        "bold": "roboto_bold_6242204ea818a3ee1fb10786cccc0488",
+        "bold_italic": "roboto_bold_italic_6d5fa4419cf58f5b1a7dda6bd59d4824",
+        "900": "roboto_900_2d72fa4a82810a53b61bc1bb51ad7043",
+        "900_italic": "roboto_900_italic_58afa215a33fa9e583b7d4d7e7ad0e4c"
+    },
+    "nunito": {
+        "normal": "nunito_normal_7173294b894229c46ad1835001660d90"
+    },
+    "open sans": {
+        "normal": "open_sans_normal_3760d4dc48428d77234c57aacbf4be3d"
+    }
+}
