@@ -56,7 +56,7 @@
             @foreach ($periode as $index => $i)
             <tr>
                 <td class="d text-center" style="background-color: #BFBFBF !important">{{ $index+1 }}</td>
-                <td class="d">{{ Carbon\Carbon::now()->month(5)->day($i->tanggal)->isoFormat('dddd / D MMMM Y') }}</td>
+                <td class="d">{{ Carbon\Carbon::now()->month($i->bulan)->day($i->tanggal)->isoFormat('dddd / D MMMM Y') }}</td>
                 <td class="d">{{ $deskripsi[$index]->deskripsi }} Aplikasi {{ $projek }}</td>
                 <td class="d text-center">
                     <img src="{{ asset('images/images ('.$num[$index].').png') }}" width="100%" alt="">

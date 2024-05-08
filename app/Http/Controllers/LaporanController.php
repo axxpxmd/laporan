@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 // Models
 use App\Models\Periode;
@@ -20,6 +21,8 @@ class LaporanController extends Controller
         $projek = $request->projek;
         $periode = Periode::where('bulan', $bulan)->where('is_libur', 0)->get();
         $deskripsi = Deskripsi::select('id', 'deskripsi')->inRandomOrder()->limit(count($periode))->get();
+
+        $n_bulan = Carbon::now()->month($bulan)->isoFormat('MMMM');
 
         for ($i = 0; $i <= count($periode); $i++) {
             $num[$i] = rand(1, 54);
@@ -42,6 +45,6 @@ class LaporanController extends Controller
             'projek'
         ));
 
-        return $pdf->stream("Laporan.pdf");
+        return $pdf->stream("Laporan " . $n_bulan . ".pdf");
     }
 }
