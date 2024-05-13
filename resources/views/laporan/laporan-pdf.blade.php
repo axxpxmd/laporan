@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>LAPORAN</title>
+    <title>LAPORAN {{ Carbon\Carbon::now()->month($bulan)->isoFormat('MMMM') }}</title>
 
       <!-- Font -->
       <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>

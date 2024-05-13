@@ -42,7 +42,8 @@ class LaporanController extends Controller
             'periode',
             'deskripsi',
             'num',
-            'projek'
+            'projek',
+            'bulan'
         ));
 
         return $pdf->stream("Laporan " . $n_bulan . ".pdf");

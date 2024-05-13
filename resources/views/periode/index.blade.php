@@ -61,7 +61,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($periode as $index => $i)
+                    @forelse ($periode as $index => $i)
                         <tr>
                             <td>{{ $i->tanggal }}</td>
                             <td>{{ Carbon\Carbon::now()->month($i->bulan)->isoFormat('MMMM') }}</td>
@@ -82,7 +82,11 @@
                                 @endif
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Tidak ada data. Silahkan generate</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
