@@ -13,7 +13,7 @@ class PeriodeController extends Controller
 {
     public function index(Request $request)
     {
-        $bulan = $request->bulan;
+        $bulan = $request->bulan ? $request->bulan : 1;
 
         $periode = Periode::when($bulan, function ($q) use ($bulan) {
             return $q->where('bulan', $bulan);

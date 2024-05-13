@@ -64,7 +64,7 @@
                     @foreach ($periode as $index => $i)
                         <tr>
                             <td>{{ $i->tanggal }}</td>
-                            <td>{{ $i->bulan }}</td>
+                            <td>{{ Carbon\Carbon::now()->month($i->bulan)->isoFormat('MMMM') }}</td>
                             <td>{{ $i->tahun }}</td>
                             <td>{{ $i->hari }}</td>
                             <td>
@@ -78,7 +78,7 @@
                                 @if ($i->is_libur == 1)
                                 <a href="{{ route('periodeBatalkanLibur', $i->id) }}" class="btn btn-sm btn-danger"><i class="bi bi-trash m-r-10"></i>Batalkan Libur</a>
                                 @else
-                                <a href="{{ route('periodeLibur', $i->id) }}" class="btn btn-sm btn-primary"><i class="bi bi-trash m-r-10"></i>Liburkan</a>
+                                <a href="{{ route('periodeLibur', $i->id) }}" class="btn btn-sm btn-primary"><i class="bi bi-check m-r-10"></i>Liburkan</a>
                                 @endif
                             </td>
                         </tr>
