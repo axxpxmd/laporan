@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('laporan', 'LaporanController@index');
+Route::get('laporan', 'LaporanController@index')->name('laporan');
 Route::get('create-laporan/{bulan}', 'LaporanController@create')->name('createLaporan');
 
 Route::get('periode', 'PeriodeController@index')->name('periode');
