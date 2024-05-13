@@ -16,8 +16,9 @@
 <body>
     <div class="col-md-6 container my-5">
         <div class="text-center">
-            <a href="{{ route('periode') }}" class="btn btn-sm btn-primary"><i class="bi bi-calendar3 m-r-10"></i>PERIODE</a>
-            <a href="{{ route('laporan') }}" class="btn btn-sm btn-success"><i class="bi bi-journal-plus m-r-10"></i>CREATE LAPORAN</a>
+            <a href="{{ route('periode') }}" class="btn btn-sm btn-primary m-r-5"><i class="bi bi-calendar3 m-r-10"></i>PERIODE</a>
+            <a href="{{ route('periode') }}" class="btn btn-sm btn-warning m-r-5"><i class="bi bi-calendar3 m-r-10"></i>DESKRIPSI</a>
+            <a href="{{ route('laporan') }}" class="btn btn-sm btn-success m-r-5"><i class="bi bi-journal-plus m-r-10"></i>CREATE LAPORAN</a>
         </div>
     </div>
 </body>
