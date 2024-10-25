@@ -20,6 +20,12 @@ Route::get('/', function () {
 Route::get('laporan', 'LaporanController@index')->name('laporan');
 Route::get('create-laporan/{bulan}', 'LaporanController@create')->name('createLaporan');
 
+Route::get('deskripsi', 'DeskripsiController@index')->name('deskripsi.index');
+Route::get('deskripsi/edit/{id}', 'DeskripsiController@edit')->name('deskripsi.edit');
+Route::get('deskripsi/update/{id}', 'DeskripsiController@update')->name('deskripsi.update');
+Route::post('deskripsi/store', 'DeskripsiController@store')->name('deskripsi.store');
+Route::get('/deskripsi/delete/{id}', 'DeskripsiController@destroy')->name('deskripsi.destroy');
+
 Route::get('periode', 'PeriodeController@index')->name('periode');
 Route::get('generate-periode/{bulan}', 'PeriodeController@generateTanggal')->name('generatePeriode');
 Route::get('libur/{id}', 'PeriodeController@libur')->name('periodeLibur');
