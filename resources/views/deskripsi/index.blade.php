@@ -18,13 +18,13 @@
     <div class="col-md-6 container my-5">
         <p class="text-center fw-bold fs-4">LIST DESKRIPSI</p>
         @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade text-center show" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
         <a href="{{ url('/') }}" class="btn btn-sm btn-danger m-r-5"><i class="bi bi-arrow-left m-r-10"></i>Kembali</a>
-        <button type="button" onclick="create()" class="btn btn-sm btn-primary"><i class="bi bi-plus m-r-10"></i>Tambah Data</button>
+        <button type="button" onclick="create()" class="btn btn-sm btn-success"><i class="bi bi-plus m-r-10"></i>Tambah Data</button>
         <div class="mt-2">
             <table id="myTable" class="table table-bordered">
                 <thead>
@@ -66,7 +66,7 @@
                     <div class="modal-body">
                         @csrf
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Deskripi : </label>
+                            <label for="message-text" class="col-form-label fw-bold">Deskripi : </label>
                             <textarea class="form-control" rows="4" name="deskripsi" id="deskripsi"></textarea>
                         </div>
                     </div>
@@ -101,7 +101,6 @@
         // get detail data
         url = "{{ route('deskripsi.edit', ':id') }}".replace(':id', id);
         $.get(url, function(data){
-            console.log(data.deskripsi);
             $('#deskripsi').html(data.deskripsi)
 
         }, 'JSON');
