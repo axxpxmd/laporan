@@ -19,6 +19,8 @@ class LaporanController extends Controller
     public function create($bulan, Request $request)
     {
         $projek = $request->projek;
+        $nama = $request->nama;
+        $posisi = $request->posisi;
         $periode = Periode::where('bulan', $bulan)->where('is_libur', 0)->get();
         $deskripsi = Deskripsi::select('id', 'deskripsi')->inRandomOrder()->limit(count($periode))->get();
 
@@ -43,7 +45,9 @@ class LaporanController extends Controller
             'deskripsi',
             'num',
             'projek',
-            'bulan'
+            'bulan',
+            'nama',
+            'posisi'
         ));
 
         return $pdf->stream("Laporan " . $n_bulan . ".pdf");

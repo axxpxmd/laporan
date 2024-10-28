@@ -42,6 +42,18 @@
                 <input type="text" id="projek" onchange="getParams()" class="form-control r-0 s-12 col-md-12" autocomplete="off"/>
             </div>
         </div>
+        <div class="row mb-2">
+            <label for="projek" class="col-form-label s-12 col-md-2 font-weight-bolder">Nama</label>
+            <div class="col-sm-8">
+                <input type="text" id="nama" value="Asip Hamdi" onchange="getParams()" class="form-control r-0 s-12 col-md-12" autocomplete="off"/>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label for="projek" class="col-form-label s-12 col-md-2 font-weight-bolder">Posisi</label>
+            <div class="col-sm-8">
+                <input type="text" id="posisi" value="Fullstack Developer 1" onchange="getParams()" class="form-control r-0 s-12 col-md-12" autocomplete="off"/>
+            </div>
+        </div>
         <div class="row mb-4">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
@@ -57,8 +69,10 @@
     function getParams(){
         bulan = $('#bulan').val();
         projek = $('#projek').val();
+        nama = $('#nama').val();
+        posisi = $('#posisi').val();
 
-        urlGenerate = "{{ route('createLaporan', ':bulan') }}?projek=".replace(':bulan', bulan)+projek;
+        urlGenerate = "{{ route('createLaporan', ':bulan') }}?projek=".replace(':bulan', bulan)+projek+"&nama="+nama+"&posisi="+posisi;
 
         $('#periodeGenerate').attr('href', urlGenerate)
     }
