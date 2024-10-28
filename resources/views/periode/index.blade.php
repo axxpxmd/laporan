@@ -26,7 +26,7 @@
         <div class="row mb-2 mt-2">
             <label for="bulan" class="col-form-label s-12 col-md-2 font-weight-bolder">Bulan</label>
             <div class="col-sm-8">
-                <select id="bulan" onchange="getParams()" class="select2 form-control r-0 s-12">
+                <select id="bulan" onchange="getParams()" class="form-select">
                     <option value="1" {{ $bulan == 1 ? 'selected' : '-' }}>Januari</option>
                     <option value="2" {{ $bulan == 2 ? 'selected' : '-' }}>Februari</option>
                     <option value="3" {{ $bulan == 3 ? 'selected' : '-' }}>Maret</option>

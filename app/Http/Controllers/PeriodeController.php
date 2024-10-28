@@ -40,7 +40,7 @@ class PeriodeController extends Controller
             Periode::UpdateOrCreate([
                 'tanggal' => $i,
                 'bulan' => $bulan,
-                'tahun' => 2024,
+                'tahun' => date('Y'),
                 'hari' => Carbon::now()->month($bulan)->day($i)->isoFormat('dddd'),
                 'is_libur' => $is_libur
             ]);
