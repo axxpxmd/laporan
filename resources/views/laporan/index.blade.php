@@ -57,7 +57,7 @@
         <div class="row mb-4">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <a href="#" id="periodeGenerate" class="btn btn-primary btn-sm"><i class="bi bi-save m-r-10"></i>Generate</a>
+                <a href="#" id="periodeGenerate" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-save m-r-10"></i>Generate</a>
             </div>
         </div>
     </div>
