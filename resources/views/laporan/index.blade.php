@@ -16,7 +16,8 @@
 <body>
     <div class="col-md-6 container my-5">
         <p class="text-center fw-bold fs-4">LAPORAN</p>
-        <div class="row mb-2">
+        <a href="{{ url('/') }}" class="btn btn-sm btn-danger m-r-5"><i class="bi bi-arrow-left m-r-10"></i>Kembali</a>
+        <div class="row mb-2 mt-4">
             <label for="bulan" class="col-form-label s-12 col-md-2 font-weight-bolder">Bulan</label>
             <div class="col-sm-8">
                 <select id="bulan" onchange="getParams()" class="select2 form-control r-0 s-12">
