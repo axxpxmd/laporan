@@ -26,6 +26,16 @@
         @endif
         <a href="{{ url('/') }}" class="btn btn-sm btn-danger m-r-5"><i class="bi bi-arrow-left m-r-10"></i>Kembali</a>
         <a href="{{ route('1.51.create') }}" class="btn btn-sm btn-success"><i class="bi bi-plus m-r-10"></i>Tambah Data</a>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div class="col-md">
+                    <input type="date" class="form-control form-control-sm" value="{{ $date }}" onchange="filter()" id="date_filter"></input>
+                </div>
+                <div class="col-md">
+                    <a href="#" id="url_filter" class="btn btn-sm btn-success"><i class="bi bi-filter m-r-10"></i>Filter</a>
+                </div>
+            </div>
+        </div>
         <div class="mt-2">
             <table id="myTable" class="table table-bordered">
                 <thead>
@@ -39,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($datas as $index => $i)
+                    @foreach ($datas as $index => $i)
                         <tr>
                             <td class="text-center">{{ $index+1 }}</td>
                             <td>{{ $i->match_name }}</td>
@@ -60,11 +70,7 @@
                                 <a href="{{ route('1.51.destroy', $i->id) }}" onclick="return confirm('Yakin ingin dihapus?')" class="btn btn-sm btn-danger"><i class="bi bi-trash m-r-10"></i>Hapus</a>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">Tidak ada data.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -116,6 +122,14 @@
 
     let table = new DataTable('#myTable');
 
+    function filter(){
+        date_filter = $('#date_filter').val();
+
+        url = "{{ route('1.51') }}?date=" + date_filter;
+
+        $('#url_filter').attr('href', url);
+    }
+
     function edit(id){
         $('#exampleModal').modal('show');
 
@@ -133,5 +147,6 @@
 
         $('#form').attr('action', "{{ route('1.51.update', ':id') }}".replace(':id', id));
     }
+
 </script>
 </html>

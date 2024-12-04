@@ -11,12 +11,15 @@ use App\Models\Code151;
 
 class ChudaiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $datas = Code151::select('*')->get();
+        $date = $request->date ? $request->date : Carbon::now()->format('Y-m-d');
+
+        $datas = Code151::select('*')->where('date', $date)->get();
 
         return view('chudai.index', compact(
-            'datas'
+            'datas',
+            'date'
         ));
     }
 
