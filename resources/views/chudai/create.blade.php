@@ -27,10 +27,6 @@
             <div class="mb-3">
                 <input type="file" class="form-control" name="document_attachment_doc" id="document_attachment_doc" required>
             </div>
-            <div class="mb-3">
-                <label for="description" class="col-form-label fw-bold">Description</label>
-                <textarea class="form-control" rows="3" name="description" id="description"></textarea>
-            </div>
             <button type="submit" class="btn btn-success">Simpan</button>
         </form>
     </div>

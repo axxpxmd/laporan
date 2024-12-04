@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Code151;
 use Carbon\Carbon;
+
 use Illuminate\Http\Request;
+
+// Models
+use App\Models\Code151;
 
 class ChudaiController extends Controller
 {
@@ -24,12 +27,10 @@ class ChudaiController extends Controller
 
     public function store(Request $request)
     {
-
         $date = Carbon::now()->format('Y-m-d');
 
         $match_name  = $request->match_name;
         $image       = $request->document_attachment_doc;
-        $description = $request->description;
 
         $imageName = $match_name .  ' (' . $date . ')' . '.' . $image->extension();
         $request->document_attachment_doc->move('151', $imageName);
@@ -37,12 +38,40 @@ class ChudaiController extends Controller
         Code151::create([
             'match_name' => $match_name,
             'image' => $imageName,
-            'description' => $description,
             'date' => $date
         ]);
 
         return redirect()
             ->route('1.51')
             ->withSuccess('Berhasil Disimpan.');
+    }
+
+    public function edit($id)
+    {
+        $data = Code151::find($id);
+
+        return $data;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = Code151::find($id);
+        $data->update([
+            'result' => $request->result,
+            'status' => $request->status
+        ]);
+
+        return redirect()
+            ->route('1.51')
+            ->withSuccess('Berhasil Diperbaharui.');
+    }
+
+    public function destroy($id)
+    {
+        Code151::destroy($id);
+
+        return redirect()
+            ->route('1.51')
+            ->withSuccess('Berhasil Dihapus.');
     }
 }

@@ -24,7 +24,7 @@ Route::get('deskripsi', 'DeskripsiController@index')->name('deskripsi.index');
 Route::get('deskripsi/edit/{id}', 'DeskripsiController@edit')->name('deskripsi.edit');
 Route::post('deskripsi/update/{id}', 'DeskripsiController@update')->name('deskripsi.update');
 Route::post('deskripsi/store', 'DeskripsiController@store')->name('deskripsi.store');
-Route::get('/deskripsi/delete/{id}', 'DeskripsiController@destroy')->name('deskripsi.destroy');
+Route::get('deskripsi/delete/{id}', 'DeskripsiController@destroy')->name('deskripsi.destroy');
 
 Route::get('periode', 'PeriodeController@index')->name('periode');
 Route::get('generate-periode/{bulan}', 'PeriodeController@generateTanggal')->name('generatePeriode');
@@ -33,4 +33,7 @@ Route::get('batalkan-libur/{id}', 'PeriodeController@batalkanLibur')->name('peri
 
 Route::get('1.51', 'ChudaiController@index')->name('1.51');
 Route::get('1.51/create', 'ChudaiController@create')->name('1.51.create');
-Route::post('1.51', 'ChudaiController@store')->name('1.51.store');
+Route::post('1.51/store', 'ChudaiController@store')->name('1.51.store');
+Route::get('1.51/edit/{id}', 'ChudaiController@edit')->name('1.51.edit');
+Route::post('1.51/update/{id}', 'ChudaiController@update')->name('1.51.update');
+Route::get('1.51/delete/{id}', 'ChudaiController@destroy')->name('1.51.destroy');
