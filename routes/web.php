@@ -30,3 +30,7 @@ Route::get('periode', 'PeriodeController@index')->name('periode');
 Route::get('generate-periode/{bulan}', 'PeriodeController@generateTanggal')->name('generatePeriode');
 Route::get('libur/{id}', 'PeriodeController@libur')->name('periodeLibur');
 Route::get('batalkan-libur/{id}', 'PeriodeController@batalkanLibur')->name('periodeBatalkanLibur');
+
+Route::get('1.51', 'ChudaiController@index')->name('1.51');
+Route::get('1.51/create', 'ChudaiController@create')->name('1.51.create');
+Route::post('1.51', 'ChudaiController@store')->name('1.51.store');

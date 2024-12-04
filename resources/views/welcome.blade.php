@@ -20,6 +20,7 @@
             <a href="{{ route('periode') }}" class="btn btn-sm btn-danger m-r-5"><i class="bi bi-clock m-r-10"></i>ABSEN</a>
             <a href="{{ route('deskripsi.index') }}" class="btn btn-sm btn-warning m-r-5"><i class="bi bi-card-list m-r-10"></i>DESKRIPSI</a>
             <a href="{{ route('laporan') }}" class="btn btn-sm btn-success m-r-5"><i class="bi bi-journal-plus m-r-10"></i>CREATE LAPORAN</a>
+            <a href="{{ route('1.51') }}" class="btn btn-sm btn-info m-r-5"><i class="bi bi-journal-plus m-r-10"></i>1.51</a>
         </div>
     </div>
 </body>
