@@ -26,23 +26,70 @@
         @endif
         <a href="{{ url('/') }}" class="btn btn-sm btn-danger m-r-5"><i class="bi bi-arrow-left m-r-10"></i>Kembali</a>
         <a href="{{ route('1.51.create') }}" class="btn btn-sm btn-success"><i class="bi bi-plus m-r-10"></i>Tambah Data</a>
-        <div class="col-md-6 mt-4">
+        <div class="col-md mt-4">
             <div class="row">
                 <div class="col-md">
                     <input type="date" class="form-control form-control-sm" value="{{ $date }}" onchange="filter()" id="date_filter"></input>
+                </div>
+                <div class="col-md">
+                    <select class="form-select form-select-sm" onchange="filter()" id="date_status_filter">
+                        <option value="OFF" {{ $date_status == 'OFF' ? 'selected' : '' }}>OFF</option>
+                        <option value="ON" {{ $date_status == 'ON' ? 'selected' : '' }}>ON</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <select class="form-select form-select-sm" onchange="filter()" id="status_filter">
+                        <option value="null" {{ $status == 'null' ? 'selected' : '' }}>All</option>
+                        <option value="X" {{ $status == 'X' ? 'selected' : '' }}>X</option>
+                        <option value="W" {{ $status == 'W' ? 'selected' : '' }}>W</option>
+                        <option value="L" {{ $status == 'L' ? 'selected' : '' }}>L</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <select class="form-select form-select-sm" onchange="filter()" id="code_filter">
+                        <option value="null" {{ $code == 'null' ? 'selected' : '' }}>All</option>
+                        <option value="1.51" {{ $code == '1.51' ? 'selected' : '' }}>1.51</option>
+                        <option value="1.53" {{ $code == '1.53' ? 'selected' : '' }}>1.53</option>
+                        <option value="1.56" {{ $code == '1.56' ? 'selected' : '' }}>1.56</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <select class="form-select form-select-sm" onchange="filter()" id="round_filter">
+                        <option value="null" {{ $round == 'null' ? 'selected' : '' }}>All</option>
+                        <option value="HT" {{ $round == 'HT' ? 'selected' : '' }}>HT</option>
+                        <option value="FT" {{ $round == 'FT' ? 'selected' : '' }}>FT</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <select class="form-select form-select-sm" onchange="filter()" id="hdp_filter">
+                        <option value="null" {{ $hdp == 'null' ? 'selected' : '' }}>All</option>
+                        <option value="0:0" {{ $hdp == '0:0' ? 'selected' : '' }}>0:0</option>
+                        <option value="1/4" {{ $hdp == '1/4' ? 'selected' : '' }}>1/4</option>
+                        <option value="1/2" {{ $hdp == '1/2' ? 'selected' : '' }}>1/2</option>
+                        <option value="3/4" {{ $hdp == '3/4' ? 'selected' : '' }}>3/4</option>
+                    </select>
+                </div>
+                <div class="col-md">
+                    <select class="form-select form-select-sm" onchange="filter()" id="type_filter">
+                        <option value="null" {{ $type == 'null' ? 'selected' : '' }}>All</option>
+                        <option value="HDP" {{ $type == 'HDP' ? 'selected' : '' }}>HDP</option>
+                        <option value="MIX" {{ $type == 'MIX' ? 'selected' : '' }}>MIX</option>
+                    </select>
                 </div>
                 <div class="col-md">
                     <a href="#" id="url_filter" class="btn btn-sm btn-success"><i class="bi bi-filter m-r-10"></i>Filter</a>
                 </div>
             </div>
         </div>
+        <hr>
         <div class="mt-2">
             <table id="myTable" class="table table-bordered">
                 <thead>
                     <tr>
                         <th width="5%">No</th>
-                        <th width="30%">Match Name</th>
-                        <th width="30%">Result</th>
+                        <th width="35%">Match Name</th>
+                        <th width="20%">Result</th>
+                        <th width="5%"></th>
                         <th width="10%">Image</th>
                         <th width="10%">Date</th>
                         <th width="15%">Aksi</th>
@@ -55,10 +102,16 @@
                             <td>{{ $i->match_name }}</td>
                             <td>
                                 {{ $i->result }}
-                                @if ($i->status == 'W')
-                                    <span class="fw-bold text-success">W</span>
-                                @else
-                                    <span class="fw-bold text-danger">L</span>
+                            </td>
+                            <td class="text-center">
+                                @if ($i->status)
+                                    @if ($i->status == 'W')
+                                        <span class="fw-bold text-success">W</span>
+                                    @elseif($i->status == 'L')
+                                        <span class="fw-bold text-danger">L</span>
+                                    @else
+                                        <span class="fw-bold text-black">X</span>
+                                    @endif
                                 @endif
                             </td>
                             <td class="text-center">
@@ -101,6 +154,12 @@
                                 L
                             </label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="X" name="status" id="status3" required>
+                            <label class="form-check-label" for="status3">
+                                X
+                            </label>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x m-r-10"></i>Tutup</button>
@@ -108,6 +167,9 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="text-center">
+            <img src="#" id="url_image" width="50%" alt="">
         </div>
     </div>
 </body>
@@ -124,8 +186,15 @@
 
     function filter(){
         date_filter = $('#date_filter').val();
+        status_filter = $('#status_filter').val();
+        code_filter = $('#code_filter').val();
+        round_filter = $('#round_filter').val();
+        date_status_filter = $('#date_status_filter').val();
+        hdp_filter = $('#hdp_filter').val();
+        type_filter = $('#type_filter').val();
 
-        url = "{{ route('1.51') }}?date=" + date_filter;
+
+        url = "{{ route('1.51') }}?date=" + date_filter + "&status=" + status_filter + "&code=" + code_filter + "&round=" + round_filter + "&date_status=" + date_status_filter + "&hpd=" + hdp_filter + "&type=" + type_filter
 
         $('#url_filter').attr('href', url);
     }
@@ -139,9 +208,15 @@
             $('#result').html(data.result)
             if (data.status == 'W') {
                 $("#status1").prop("checked", true);
-            } else {
+            } else if(data.status == 'L') {
                 $("#status2").prop("checked", true);
+            } else {
+                $("#status3").prop("checked", true);
             }
+
+            url_image = "{{ asset('151/:image') }}".replace(':image', data.image);
+            console.log(url_image);
+            $('#url_image').attr('src', url_image);
 
         }, 'JSON');
 
