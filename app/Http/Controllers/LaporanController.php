@@ -8,31 +8,48 @@ use Illuminate\Support\Carbon;
 // Models
 use App\Models\Periode;
 use App\Models\Deskripsi;
+use App\Models\Pelapor;
 
 class LaporanController extends Controller
 {
     public function index()
     {
-        return view('laporan.index');
+        $pelapor = Pelapor::all();
+
+        return view('laporan.index', compact('pelapor'));
     }
 
     public function create($bulan, Request $request)
     {
+        $pelapor_id = $request->pelapor_id;
+
+        $pelapor = Pelapor::find($pelapor_id);
+
+        if (!$pelapor) {
+            return redirect()->back()->withErrors(['Pelapor not found']);
+        }
+
+        $nama   = $pelapor->nama;
+        $posisi = $pelapor->jabatan;
         $projek = $request->projek;
-        $nama = $request->nama;
-        $posisi = $request->posisi;
+
         $periode = Periode::where('bulan', $bulan)->where('is_libur', 0)->get();
-        $deskripsi = Deskripsi::select('id', 'deskripsi')->inRandomOrder()->limit(count($periode))->get();
+        if ($periode->isEmpty()) {
+            return redirect()->back()->withErrors(['No periods found for the given month']);
+        }
 
-        $n_bulan = Carbon::now()->month($bulan)->isoFormat('MMMM');
+        $deskripsi = Deskripsi::select('id', 'deskripsi')->inRandomOrder()->limit($periode->count())->get();
+        if ($deskripsi->isEmpty()) {
+            return redirect()->back()->withErrors(['No descriptions available']);
+        }
 
-        for ($i = 0; $i <= count($periode); $i++) {
-            $num[$i] = rand(1, 54);
-            for ($j = 0; $j < $i; $j++) {
-                while ($num[$j] == $num[$i]) {
-                    $num[$i] = rand(1, 54);
-                    $j = 0;
-                }
+        $n_bulan = Carbon::create()->month($bulan)->isoFormat('MMMM');
+
+        $num = [];
+        while (count($num) < $periode->count()) {
+            $randNum = rand(1, 54);
+            if (!in_array($randNum, $num)) {
+            $num[] = $randNum;
             }
         }
         sort($num);
@@ -47,7 +64,8 @@ class LaporanController extends Controller
             'projek',
             'bulan',
             'nama',
-            'posisi'
+            'posisi',
+            'pelapor'
         ));
 
         return $pdf->stream("Laporan " . $n_bulan . ".pdf");

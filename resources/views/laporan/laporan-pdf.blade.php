@@ -45,7 +45,12 @@
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important">
     <div style="margin-top: -35px !important; margin-bottom: -100px !important">
         <p style="position: absolute; margin-top: 220px !important; margin-left: 95px !important; font-size: 24px ">Bulan {{ Carbon\Carbon::now()->month($bulan)->isoFormat('MMMM') }} {{ date('Y') }} LAPORAN</p>
+        @if ($nama == "Asip Hamdi")
         <p style="position: absolute; margin-top: 450px !important; margin-left: 810px !important; font-size: 24px ">{{ $nama }}</p>
+        @endif
+        @if ($nama == "Aolia Ikhwanudin")
+        <p style="position: absolute; margin-top: 450px !important; margin-left: 755px !important; font-size: 24px ">{{ $nama }}</p>
+        @endif
         <p style="position: absolute; margin-top: 490px !important; margin-left: 710px !important; font-size: 24px ">{{ $posisi }}</p>
         <img style="margin-left: -30px !important" src="{{ public_path('assets/cover_depan.jpeg') }}" alt="" width="105%">
     </div>
@@ -75,7 +80,7 @@
         </table>
     </div>
     <div>
-        <img src="{{ public_path('assets/halaman_ttd.jpeg') }}" alt="" width="100%">
+        <img src="{{ public_path('assets/'. $pelapor->image_path) }}" alt="" width="100%">
     </div>
 </body>
 </html>

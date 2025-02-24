@@ -45,13 +45,11 @@
         <div class="row mb-2">
             <label for="projek" class="col-form-label s-12 col-md-2 font-weight-bolder">Nama</label>
             <div class="col-sm-8">
-                <input type="text" id="nama" value="Asip Hamdi" onchange="getParams()" class="form-control r-0 s-12 col-md-12" autocomplete="off"/>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <label for="projek" class="col-form-label s-12 col-md-2 font-weight-bolder">Posisi</label>
-            <div class="col-sm-8">
-                <input type="text" id="posisi" value="Fullstack Developer 1" onchange="getParams()" class="form-control r-0 s-12 col-md-12" autocomplete="off"/>
+                <select id="pelapor_id" onchange="getParams()" class="select2 form-control r-0 s-12">
+                    @foreach ($pelapor as $i)
+                        <option value="{{ $i->id }}">{{ $i->nama }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="row mb-4">
@@ -69,10 +67,9 @@
     function getParams(){
         bulan = $('#bulan').val();
         projek = $('#projek').val();
-        nama = $('#nama').val();
-        posisi = $('#posisi').val();
+        pelapor_id = $('#pelapor_id').val();
 
-        urlGenerate = "{{ route('createLaporan', ':bulan') }}?projek=".replace(':bulan', bulan)+projek+"&nama="+nama+"&posisi="+posisi;
+        urlGenerate = "{{ route('createLaporan', ':bulan') }}?projek=".replace(':bulan', bulan)+projek+"&pelapor_id="+pelapor_id
 
         $('#periodeGenerate').attr('href', urlGenerate)
     }
